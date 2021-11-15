@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "~src/styles/variables" as spider;
+
+:host {
+  display: block;
+  height: 100%;
+
+  .mat-sidenav-container {
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: 62px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    .mat-sidenav {
+      width: 200px;
+    }
+
+    .mat-sidenav-content {
+      padding: 20px;
+    }
+
+    a.active-mat-list-item {
+      box-sizing: border-box;
+      border-left: 4px solid map.get(spider.$colors, primary);
+      color: map.get(spider.$colors, primary);
+    }
+  }
+}
+
+:host::ng-deep {
+  .spider-nav-list-item {
+    .mat-list-item-content .mat-list-text {
+      .title {
+        font-weight: 500;
+      }
+
+      .desc {
+        font-size: 13px;
+      }
+    }
+  }
+}
