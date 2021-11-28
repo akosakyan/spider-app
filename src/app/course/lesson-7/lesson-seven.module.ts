@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LessonSevenRoutingModule } from './lesson-seven-routing.module';
 import { LessonSevenComponent } from './lesson-seven.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { LessonSevenComponent } from './lesson-seven.component';
   ],
   imports: [
     CommonModule,
-    LessonSevenRoutingModule
+    LessonSevenRoutingModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class LessonSevenModule { }

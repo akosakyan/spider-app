@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs';
-import { CourseStructureService } from '@course/shared';
+import { CourseStructureService } from './services';
 
 @Component({
   selector: 'spider-course-container',

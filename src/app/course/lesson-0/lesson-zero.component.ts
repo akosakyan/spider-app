@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseStructureService } from '@course/shared';
+import { CourseStructureService } from '../services';
 
 @Component({
   selector: 'spider-lesson-zero',

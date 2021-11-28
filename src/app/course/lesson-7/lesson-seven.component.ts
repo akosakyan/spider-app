@@ -1,18 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'spider-lesson-seven',
   template: `
-    <div class="counter">
-      <button class="minus" (click)="minus()"><span>-</span></button>
-      <div class="count">{{ count }}</div>
-      <button class="plus" (click)="plus()"><span>+</span></button>
+    <div style="width: 100%">
+      <h1>Explore API</h1>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 20px">
+        <button mat-flat-button (click)="onCreate()">
+          account API - create<mat-icon>get_app</mat-icon>
+        </button>
+        <button mat-flat-button (click)="onGetAll()">
+          account API - getAll<mat-icon>get_app</mat-icon>
+        </button>
+        <button mat-flat-button (click)="onGetById()">
+          account API - getById<mat-icon>get_app</mat-icon>
+        </button>
+        <button mat-flat-button (click)="onUpdate()">
+          account API - update<mat-icon>get_app</mat-icon>
+        </button>
+        <button mat-flat-button (click)="onDelete()">
+          account API - delete<mat-icon>get_app</mat-icon>
+        </button>
+      </div>
     </div>
     
-    <div class="counter">
-      <button class="minus" (click)="minus()"><span>-</span></button>
-      <div class="count">{{ count2 }}</div>
-      <button class="plus" (click)="plus()"><span>+</span></button>
+    <div>
+      <!-- TODO: insert filters component here -->
+      <!--  -->
+    </div>
+
+    <div>
+      <!-- TODO: insert list/table component here -->
+      <!-- MaterialTable -->
+    </div>
+
+    <div>
+      <!-- TODO: insert footer component here -->
+      <!-- Operations history -->
     </div>
   `,
   styles: [`
@@ -49,20 +74,31 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class LessonSevenComponent implements OnInit {
-  count: number = 0;
-  count2: number = 0;
-
-  constructor() { }
+  constructor(
+    private accountService: AccountService
+  ) { }
 
   ngOnInit(): void {}
 
-  minus() {
-    this.count = this.count - 1;
+  onCreate() {
   }
 
-  plus() {
-    this.count = this.count + 1;
+  onGetAll() {
+
   }
+
+  onGetById() {
+
+  }
+
+  onUpdate() {
+
+  }
+
+  onDelete() {
+
+  }
+
 }
 
 interface ILessonSevenState {

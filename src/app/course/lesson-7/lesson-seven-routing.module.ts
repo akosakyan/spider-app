@@ -4,7 +4,8 @@ import { LessonSevenComponent } from './lesson-seven.component';
 
 const routes: Routes = [{
   path: '',
-  component: LessonSevenComponent
+  component: LessonSevenComponent,
+  data: { title: 'Orchestrate MaterialTable|StateManagement|Presenters' }
 }];
 
 @NgModule({

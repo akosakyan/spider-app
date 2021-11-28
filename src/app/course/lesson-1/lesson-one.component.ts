@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CourseStructureService } from '@course/shared';
+import { CourseStructureService } from '../services';
 import { ActivatedRoute, Event, NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { filter, map, merge, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { B } from '@angular/cdk/keycodes';
