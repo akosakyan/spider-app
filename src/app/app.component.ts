@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { SpiderAppTheme } from './types';
 import { LOCAL_STORAGE } from './providers';
+
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
