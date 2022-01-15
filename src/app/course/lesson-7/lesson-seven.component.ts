@@ -1,11 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './services/account.service';
+import { CourseStructureService } from '../services';
+
 
 @Component({
   selector: 'spider-lesson-seven',
   template: `
     <div style="width: 100%">
-      <h1>Explore API</h1>
+
+    <h1>{{ lesson.title }}</h1>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link *ngFor="let item of lesson.concepts; let index = index"
+         [routerLink]="['part-' + (index + 1)]"
+         [active]="activeLink === 'part-' + (index + 1)"
+      >
+        {{ item }}
+      </a>
+    </nav>
+    
+    <div class="lesson-part-container">
+      <router-outlet></router-outlet>
+    </div>
+
+
+      <!-- <h1>Explore API</h1>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 20px">
         <button mat-flat-button (click)="onCreate()">
           account API - create<mat-icon>get_app</mat-icon>
@@ -22,7 +40,7 @@ import { AccountService } from './services/account.service';
         <button mat-flat-button (click)="onDelete()">
           account API - delete<mat-icon>get_app</mat-icon>
         </button>
-      </div>
+      </div> -->
     </div>
     
     <div>
@@ -74,7 +92,12 @@ import { AccountService } from './services/account.service';
   `]
 })
 export class LessonSevenComponent implements OnInit {
+
+  lesson = this.courseStructure.getLesson(7);
+  activeLink: string = null;
+
   constructor(
+    private courseStructure: CourseStructureService,
     private accountService: AccountService
   ) { }
 

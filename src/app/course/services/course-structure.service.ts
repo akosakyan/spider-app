@@ -57,6 +57,8 @@ export class CourseStructureService {
       shortTitle: 'State Management',
       concepts: [
         'Pub-Sub algorithm',
+        'Counter',
+        'Todo-APP'
       ]
     },
     {
