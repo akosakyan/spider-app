@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { clear, counterSelector, decrease, increase, updatedAtSelector } from '@app/reducers/counter';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'spider-counter',
@@ -9,17 +12,17 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
              > + 1 </button>
     <button class="fz-60 p-50 m-20" 
             (click)="decrease()" 
-            [disabled]="cannotDecrease"
+            [disabled]="cannotDecrease$ | async"
             > - 1 </button>
     <button class="fz-60 p-50 m-20" 
             (click)="clear()" 
-            [disabled]="cannotDecrease"
+            [disabled]="cannotDecrease$ | async"
             > = 0 </button>
 
-    <p class="fz-60 m-20">Count = {{counter}}</p>
+    <p class="fz-60 m-20">Count = {{count$ | async}}</p>
     <br>
 
-    <p class="fz-60 m-20" *ngIf="updateAt" > Updated {{updateAt | date: "HH:mm:ss dd/MM/yy"}} </p>
+    <p class="fz-60 m-20" *ngIf="updatedAt$ | async" > Updated {{updatedAt$ | async | date: "HH:mm:ss dd/MM/yy"}} </p>
   `,
   styles: [`
     .fz-60 {
@@ -39,33 +42,27 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class CounterComponent implements OnInit {
 
-  counter = 0
+  count$ = this.store.select(counterSelector)
+  cannotDecrease$ = this.count$.pipe(map(count => count >= 0))
+  updatedAt$ = this.store.select(updatedAtSelector)
 
-  updateAt?: number;
-
-  constructor() { }
+  constructor(
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
   }
 
-  get cannotDecrease(): boolean {
-    return this.counter <= 0;
-  }
-
   increase (): void {
-    this.updateAt = Date.now();
-    this.counter++ ;
-
+    this.store.dispatch(increase())
   }
 
   decrease(): void {
-    this.updateAt = Date.now();
-    this.counter-- ;
+    this.store.dispatch(decrease())
   }
 
   clear(): void {
-    this.updateAt = Date.now();
-    this.counter = 0
+    this.store.dispatch(clear())
   }
 
 }
