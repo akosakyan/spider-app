@@ -25,6 +25,7 @@ export class CourseStructureService {
       title: 'Directives',
       concepts: [
         'Structural Directives',
+        'Class Directives',
       ]
     },
     {
@@ -37,6 +38,9 @@ export class CourseStructureService {
       title: 'Reactive Forms',
       concepts: [
         'Complex forms with use of ControlValueAccessor',
+        'Material forms accessor',
+        'Reactive forms',
+        'Tamplate driven forms'
       ]
     },
     {

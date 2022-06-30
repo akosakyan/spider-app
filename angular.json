@@ -106,6 +106,16 @@
           "options": {
             "browserTarget": "spider-app:build"
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "spider-app:build:production",
+            "firebaseProject": "spyderapp-001",
+            "firebaseHostingSite": "spyderapp-001"
+          }
         }
       }
     }

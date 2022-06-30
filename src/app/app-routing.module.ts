@@ -13,6 +13,11 @@ const routes: Routes = [
       .then((m) => m.CourseModule)
   },
   {
+    path: 'course',
+    loadChildren: () => import('./course/course.module')
+      .then((m) => m.CourseModule)
+  },
+  {
     path: 'materials',
     loadChildren: () => import('./materials/materials.module')
       .then((m) => m.MaterialsModule)

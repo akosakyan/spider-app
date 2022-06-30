@@ -1,31 +1,41 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CourseStructureService } from '../services';
-import { ActivatedRoute, Event, NavigationEnd, Router, UrlSegment } from '@angular/router';
-import { filter, map, merge, startWith, Subject, takeUntil, tap } from 'rxjs';
-import { B } from '@angular/cdk/keycodes';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { CourseStructureService } from "../services";
+import {
+  ActivatedRoute,
+  Event,
+  NavigationEnd,
+  Router,
+  UrlSegment,
+} from "@angular/router";
+import { filter, map, merge, startWith, Subject, takeUntil, tap } from "rxjs";
+import { B } from "@angular/cdk/keycodes";
 
 @Component({
-  selector: 'spider-lesson-one',
+  selector: "spider-lesson-one",
   template: `
     <h1>{{ lesson.title }}</h1>
     <nav mat-tab-nav-bar>
-      <a mat-tab-link *ngFor="let item of lesson.concepts; let index = index"
-         [routerLink]="['part-' + (index + 1)]"
-         [active]="activeLink === 'part-' + (index + 1)"
+      <a
+        mat-tab-link
+        *ngFor="let item of lesson.concepts; let index = index"
+        [routerLink]="['part-' + (index + 1)]"
+        [active]="activeLink === 'part-' + (index + 1)"
       >
         {{ item }}
       </a>
     </nav>
-    
+
     <div class="lesson-part-container">
       <router-outlet></router-outlet>
     </div>
   `,
-  styles: [`
-    .lesson-part-container {
-      padding: 14px;
-    }
-  `]
+  styles: [
+    `
+      .lesson-part-container {
+        padding: 14px;
+      }
+    `,
+  ],
 })
 export class LessonOneComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
@@ -36,7 +46,7 @@ export class LessonOneComponent implements OnInit, OnDestroy {
   constructor(
     private courseStructure: CourseStructureService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -44,9 +54,12 @@ export class LessonOneComponent implements OnInit, OnDestroy {
       .pipe(
         filter((event: Event) => event instanceof NavigationEnd),
         filter(() => !!this.activatedRoute.firstChild),
-        map((event: NavigationEnd) => this.activatedRoute.firstChild.snapshot.url[0]),
+        map(
+          (event: NavigationEnd) =>
+            this.activatedRoute.firstChild.snapshot.url[0]
+        ),
         startWith(this.activatedRoute.firstChild.snapshot.url[0]),
-        takeUntil(this.destroyed$),
+        takeUntil(this.destroyed$)
       )
       .subscribe(({ path }) => {
         this.activeLink = path;

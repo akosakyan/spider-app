@@ -14,7 +14,8 @@ interface AccountEntity {
   providedIn: 'root'
 })
 export class AccountService implements RestApiInterface<AccountEntity> {
-  private readonly apiResourceUrl = 'https://crudcrud.com/api/4c96e6fb94aa4b6899a525571c56f776/account';
+  // private readonly apiResourceUrl = 'https://crudcrud.com/api/4c96e6fb94aa4b6899a525571c56f776/account';
+  private readonly apiResourceUrl = 'https://spyderapp-001-default-rtdb.firebaseio.com/';
 
   constructor(
     private httpClient: HttpClient

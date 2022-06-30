@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "spyderapp-001": {
+      "hosting": {
+        "spider-app": [
+          "spyderapp-001"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "spyderapp-001"
+  }
+}
